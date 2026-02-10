@@ -30,14 +30,14 @@ jobs:
 
       - name: Start Docker services
         run: |
-          docker-compose up -d
+          docker compose up -d
           echo "Waiting for services to be ready..."
           sleep 30
 
       - name: Check service health
         run: |
           echo "Checking if services are running..."
-          docker-compose ps
+          docker compose ps
           curl -f http://localhost:4000 || echo "Gateway not ready yet"
 
       - name: Install Playwright Browsers
@@ -65,7 +65,7 @@ jobs:
 
       - name: Stop Docker services
         if: always()
-        run: docker-compose down
+        run: docker compose down
 
       - name: Display test summary
         if: always()
